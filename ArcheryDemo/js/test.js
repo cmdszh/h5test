@@ -5,17 +5,27 @@ let percent = 150.0;
 
 let img;
 
-let initalTweenX ;
+let initalTweenX;
 let tmpInc = 0;
 
-let zoomScale  = 1;
+let zoomScale = 1;
 
 window.onload = function () {
-  testMathSin()
+  testKuoHaoEffect()
+}
+
+
+
+//////test括號
+function testKuoHaoEffect() {
+  var w = window
+  t = w._gsQueue || (w._gsQueue = [])
+  t.push(function(){})
+  console.log(t)
 }
 
 ///test use math.sin to set ground scroll
-function testMathSin(){
+function testMathSin() {
   previousTime = (new Date).getTime();
   var canvas = document.getElementById("canvas")
   ctx = canvas.getContext('2d')
@@ -35,12 +45,12 @@ function testMathSin(){
 }
 
 function renderGroundTestMathSin() {
-  initalTweenX = 600* Math.sin(tmpInc+=getDelta()/2)
+  initalTweenX = 600 * Math.sin(tmpInc += getDelta() / 2)
   var scrathHeight = img.height / percent
   for (var i = 0; i < percent; i++) {
     ctx.drawImage(img,
-      0, i * scrathHeight, img.width, scrathHeight+1,
-      canvas.width / 2 - (img.width / 2 + initalTweenX*(i/percent))*zoomScale, .5 * canvas.height + (i * scrathHeight)*zoomScale, img.width*zoomScale, scrathHeight*zoomScale + 1)
+      0, i * scrathHeight, img.width, scrathHeight + 1,
+      canvas.width / 2 - (img.width / 2 + initalTweenX * (i / percent)) * zoomScale, .5 * canvas.height + (i * scrathHeight) * zoomScale, img.width * zoomScale, scrathHeight * zoomScale + 1)
   }
   requestAnimationFrame(renderGroundTestMathSin);
 }
@@ -66,9 +76,9 @@ function testScroolImage() {
 }
 
 function renderGround() {
-  if (drift > driftOffsetMax) driftflag= -driftflag;
-  if (drift < -driftOffsetMax) driftflag= -driftflag;
-  drift = drift+driftflag;
+  if (drift > driftOffsetMax) driftflag = -driftflag;
+  if (drift < -driftOffsetMax) driftflag = -driftflag;
+  drift = drift + driftflag;
   var scrathHeight = img.height / percent
   var driftPerUnit = drift / percent;
   for (var i = 0; i < percent; i++) {
@@ -233,8 +243,8 @@ function getDelta() {
   var a = (new Date).getTime();
   t = (a - previousTime) / 1e3;
   return previousTime = a,
-  t > 1 && (t = 0),
-  t
+    t > 1 && (t = 0),
+    t
 }
 
 function test1e3() {
